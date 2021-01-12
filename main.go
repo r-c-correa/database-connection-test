@@ -52,5 +52,13 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Successfully connected!")
+	var version string
+	query := "SELECT version();"
+
+	err = db.QueryRow(query).Scan(&version)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("Successfully connected: %s\n", version)
 }
